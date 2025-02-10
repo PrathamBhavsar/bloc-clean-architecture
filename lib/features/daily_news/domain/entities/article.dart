@@ -1,10 +1,12 @@
 import 'package:equatable/equatable.dart';
 
-/// entitis are business objects in an app
-/// what kind of data wil the app has
+/// Entities are business objects in an app
+/// Represents the core article data structure.
 
 class ArticleEntity extends Equatable {
   final int? id;
+  final String? sourceId;
+  final String? sourceName;
   final String? author;
   final String? title;
   final String? description;
@@ -15,6 +17,8 @@ class ArticleEntity extends Equatable {
 
   const ArticleEntity({
     this.id,
+    this.sourceId,
+    this.sourceName,
     this.author,
     this.title,
     this.description,
@@ -24,11 +28,13 @@ class ArticleEntity extends Equatable {
     this.content,
   });
 
-  /// which objects should be compared (equatable)
+  /// Defines which properties should be compared for equality.
   @override
   List<Object?> get props {
     return [
       id,
+      sourceId,
+      sourceName,
       author,
       title,
       description,
