@@ -8,6 +8,7 @@ import 'package:news_app/features/daily_news/domain/use_cases/get_article.dart';
 import 'package:news_app/features/daily_news/domain/use_cases/get_saved_article.dart';
 import 'package:news_app/features/daily_news/domain/use_cases/remove_article.dart';
 import 'package:news_app/features/daily_news/domain/use_cases/save_article.dart';
+import 'package:news_app/features/daily_news/presentation/bloc/article/local/local_article_bloc.dart';
 import 'package:news_app/features/daily_news/presentation/bloc/article/remote/remote_article_bloc.dart';
 
 final sl = GetIt.instance;
@@ -35,4 +36,7 @@ Future<void> initializeDependencies() async {
 
   ///bloc
   sl.registerFactory<RemoteArticlesBloc>(() => RemoteArticlesBloc(sl()));
+
+  sl.registerFactory<LocalArticleBloc>(
+      () => LocalArticleBloc(sl(), sl(), sl()));
 }
