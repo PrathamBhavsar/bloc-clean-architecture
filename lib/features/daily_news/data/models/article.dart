@@ -1,6 +1,9 @@
+import "package:floor/floor.dart";
 import "package:news_app/features/daily_news/domain/entities/article.dart";
 
 /// The model class that extends the domain entity and adds JSON conversion.
+
+@Entity(tableName: 'article', primaryKeys: ['id'])
 class ArticleModel extends ArticleEntity {
   final String? sourceId;
   final String? sourceName;
