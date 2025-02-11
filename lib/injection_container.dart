@@ -5,6 +5,9 @@ import 'package:news_app/features/daily_news/data/data_sources/remote/news_api_s
 import 'package:news_app/features/daily_news/data/repository/article_repository_impl.dart';
 import 'package:news_app/features/daily_news/domain/repository/article_repository.dart';
 import 'package:news_app/features/daily_news/domain/use_cases/get_article.dart';
+import 'package:news_app/features/daily_news/domain/use_cases/get_saved_article.dart';
+import 'package:news_app/features/daily_news/domain/use_cases/remove_article.dart';
+import 'package:news_app/features/daily_news/domain/use_cases/save_article.dart';
 import 'package:news_app/features/daily_news/presentation/bloc/article/remote/remote_article_bloc.dart';
 
 final sl = GetIt.instance;
@@ -19,10 +22,16 @@ Future<void> initializeDependencies() async {
 
   sl.registerSingleton<NewsApiService>(NewsApiService(sl()));
 
-  sl.registerSingleton<ArticleRepository>(ArticleRepositoryImpl(sl()));
+  sl.registerSingleton<ArticleRepository>(ArticleRepositoryImpl(sl(), sl()));
 
   ///use cases
   sl.registerSingleton<GetArticleUseCase>(GetArticleUseCase(sl()));
+
+  sl.registerSingleton<GetSavedArticleUseCase>(GetSavedArticleUseCase(sl()));
+
+  sl.registerSingleton<SaveArticleUseCase>(SaveArticleUseCase(sl()));
+
+  sl.registerSingleton<RemoveArticleUseCase>(RemoveArticleUseCase(sl()));
 
   ///bloc
   sl.registerFactory<RemoteArticlesBloc>(() => RemoteArticlesBloc(sl()));
